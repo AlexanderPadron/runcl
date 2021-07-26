@@ -75,8 +75,25 @@
       .replace(/\s+/g, '')
   }
 
+  const run = run => {
+    if(!run) return false
+    try {
+      const runClean = runClean(run)
+      const runValid = runValidation(runClean)
+      const runFormat = runFormatting(runClean)
+      return {
+        runClean,runValid,runFormat
+      }  
+    } catch (error) {
+      return error
+    }
+    
+    
+  }
+
 module.exports = {
     runFormatting,
     runValidation,
-    runClean
+    runClean,
+    run
 }
