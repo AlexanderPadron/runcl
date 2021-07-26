@@ -33,7 +33,20 @@
 
   const runValidation = run => {
     if (run === undefined) return false
-    const runFormated = run.replace(/\./g, '')
+    let runFormated = run.replace(/\./g, '')
+    if(!runFormated.includes('-')){
+      let runTemp = runFormated.split('')
+      let runRes = ''
+      for (let index = 0; index < runTemp.length; index++) {
+          if(index == runTemp.length - 1){
+              runRes = runRes + '-' + runTemp[index] 
+          }else{
+              runRes = runRes + runTemp[index] 
+          }
+      }
+      runFormated = runRes
+    }
+    
     let Fn2 = {
       validaRut: function(rutCompleto) {
         if (!/^[0-9]+-[0-9kK]{1}$/.test(rutCompleto)) return false
